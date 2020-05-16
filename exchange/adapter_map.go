@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/prebid/prebid-server/adapters/smaato"
+
 	"github.com/prebid/prebid-server/adapters"
 	ttx "github.com/prebid/prebid-server/adapters/33across"
 	"github.com/prebid/prebid-server/adapters/adform"
@@ -134,6 +136,7 @@ func newAdapterMap(client *http.Client, cfg *config.Configuration, infos adapter
 			cfg.Adapters[string(openrtb_ext.BidderRubicon)].XAPI.Tracker),
 
 		openrtb_ext.BidderSharethrough:     sharethrough.NewSharethroughBidder(cfg.Adapters[string(openrtb_ext.BidderSharethrough)].Endpoint),
+		openrtb_ext.BidderSmaato:           smaato.NewSmaatoBidder(),
 		openrtb_ext.BidderSmartRTB:         smartrtb.NewSmartRTBBidder(cfg.Adapters[string(openrtb_ext.BidderSmartRTB)].Endpoint),
 		openrtb_ext.BidderSomoaudience:     somoaudience.NewSomoaudienceBidder(cfg.Adapters[string(openrtb_ext.BidderSomoaudience)].Endpoint),
 		openrtb_ext.BidderSonobi:           sonobi.NewSonobiBidder(client, cfg.Adapters[string(openrtb_ext.BidderSonobi)].Endpoint),
